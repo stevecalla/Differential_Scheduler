@@ -1,0 +1,83 @@
+.calendar-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.calendar-header button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.calendar-cell.past {
+  background-color: #e0e0e0;
+  pointer-events: none;
+}
+
+.calendar-cell.available {
+  background-color: #4caf50;
+  color: white;
+}
+
+.calendar-cell:hover {
+  background-color: #2196f3;
+  color: white;
+}
+
+.calendar-cell.selected {
+  background-color: #003f88;
+  color: white;
+}
+
+.available-times {
+  margin-top: 20px;
+}
+
+.available-times h3 {
+  margin: 0;
+}
+
+.available-times ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.available-times li {
+  margin: 5px 0;
+}
