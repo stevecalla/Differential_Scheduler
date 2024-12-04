@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { TimeRange } from "./calendar";
+import {DaysWithRanges} from "./calendar";
+
 
 interface AvailableTimesProps {
   activeView: "Inspector" | "Client";
-  times: TimeRange[];
+  inspectorTimes : DaysWithRanges,
+  clientTimes : DaysWithRanges,
   selectedDate: Date | null;
-  onTimeClick: (time: TimeRange) => void;
 }
 
 const AvailableTimes: React.FC<AvailableTimesProps> = ({
   inspectorTimes,
   clientTimes,
   selectedDate,
-  onTimeClick,
 }) => {
   const [activeView, setActiveView] = useState<"Inspector" | "Client">(
     "Inspector"
@@ -29,12 +29,14 @@ const AvailableTimes: React.FC<AvailableTimesProps> = ({
   // Determine the currently active times
   const times =
     activeView === "Inspector"
-      ? inspectorTimes[selectedDate.toISOString().split("T")[0]] || []
-      : clientTimes[selectedDate.toISOString().split("T")[0]] || [];
+      ? inspectorTimes || []
+      : clientTimes || [];
 
   // Determine the number of columns dynamically
   const columnCount = 5
-    //times.length > 21 ? 4 : times.length > 14 ? 3 : times.length > 7 ? 2 : 1;
+    //times.length > 21 ? 4 : times.length > 14 ? 3 : times.length > 7 ? 2 : 1
+    // ! This print needs to be buttons
+    const print = JSON.stringify(times.daysMap.get(selectedDate.toISOString()))
 
   return (
     <div className="available-times">
@@ -57,6 +59,7 @@ const AvailableTimes: React.FC<AvailableTimesProps> = ({
       {/* Display Times */}
       <h3>
         {activeView} Times for {selectedDate.toLocaleDateString()}
+        {print}
       </h3>
       <div
         className={`available-times-grid ${
@@ -64,11 +67,11 @@ const AvailableTimes: React.FC<AvailableTimesProps> = ({
         }`}
         style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)` }}
       >
-        {times.map((time, index) => (
+        {/* {times.map((time, index) => (
           <button key={index} onClick={() => onTimeClick(time)}>
-            {time}
+            {time.daysMap}
           </button>
-        ))}
+        ))} */}
       </div>
     </div>
   );

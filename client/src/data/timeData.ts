@@ -1,30 +1,65 @@
-import {TimeRange} from "../components/calendar"
-export const inspectorTimes: TimeRange = {
-  "2024-12-03": ["7:45 AM", "10:00 AM", "1:15 PM", "3:30 PM", "5:45 PM", "8:00 PM"],
-  "2024-12-04": ["9:00 AM", "12:30 PM", "4:00 PM"],
-  "2024-12-05": ["8:15 AM", "11:00 AM", "1:45 PM", "4:30 PM", "6:15 PM"],
-  "2024-12-06": ["7:30 AM", "10:15 AM", "12:00 PM", "2:45 PM", "5:30 PM", "7:15 PM"],
-  "2024-12-09": ["8:00 AM", "9:30 AM", "12:00 PM", "3:00 PM", "6:00 PM", "8:30 PM"],
-  "2024-12-10": ["7:15 AM", "9:00 AM", "11:45 AM", "2:30 PM", "4:15 PM"],
-  "2024-12-11": ["8:30 AM", "10:00 AM", "1:30 PM", "4:00 PM", "6:30 PM", "9:00 PM"],
-  "2024-12-12": ["9:15 AM", "11:00 AM", "1:45 PM", "3:30 PM", "5:15 PM"],
-  "2024-12-13": ["7:45 AM", "10:30 AM", "12:15 PM", "2:00 PM", "4:45 PM", "6:30 PM", "9:15 PM"],
-  "2024-12-14": ["8:00 AM", "9:45 AM", "11:30 AM", "1:15 PM", "3:00 PM"],
-  "2024-12-15": ["7:30 AM", "10:00 AM", "12:45 PM", "3:30 PM", "5:15 PM", "7:00 PM", "8:45 PM"],
-  "2024-12-16": ["8:15 AM", "10:45 AM", "12:30 PM", "2:15 PM", "5:00 PM"],
-  "2024-12-17": ["7:00 AM", "8:45 AM", "10:30 AM", "12:15 PM", "3:00 PM", "4:45 PM", "6:30 PM", "8:15 PM"],
-  "2024-12-18": ["7:30 AM", "9:15 AM", "11:00 AM", "12:45 PM", "2:30 PM", "4:15 PM"],
-  "2024-12-19": ["8:00 AM", "9:45 AM", "11:30 AM", "1:15 PM", "3:00 PM", "4:45 PM", "6:30 PM"],
-  "2024-12-20": ["7:45 AM", "9:30 AM", "11:15 AM", "1:00 PM", "2:45 PM", "4:30 PM", "6:15 PM", "8:00 PM"],
-  "2024-12-23": ["8:30 AM", "10:15 AM", "12:00 PM", "1:45 PM", "3:30 PM"],
-  "2024-12-24": ["7:15 AM", "8:45 AM", "10:30 AM", "12:15 PM", "2:00 PM", "3:45 PM", "5:30 PM"],
-  "2024-12-25": ["8:00 AM", "9:30 AM", "11:00 AM", "12:30 PM", "2:00 PM", "3:30 PM", "5:00 PM"],
-  "2024-12-26": ["7:00 AM", "8:30 AM", "10:00 AM", "11:30 AM", "1:00 PM", "2:30 PM", "4:00 PM", "5:30 PM"],
-  "2024-12-27": ["7:45 AM", "9:15 AM", "10:45 AM", "12:15 PM", "1:45 PM", "3:15 PM", "4:45 PM", "6:15 PM", "7:45 PM","12:00 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM","7:45 PM"]
+import { TimePeriod} from "../../../server/src/utils/timeslots";
+import {DaysWithRanges} from "../components/calendar"
+export const getRandomData = () => {
+    const days_keys : Date[] = []
+    for(let x = 1; x<=31;x++){
+      days_keys.push(new Date(2024, 11, x))
+    }
+  const values: [TimePeriod[]] = [[]];
+
+  for (let i = 0; i < 31; i++) {
+    const periods: TimePeriod[] = [];
+    const length = Math.floor(Math.random() * 16); // Random length between 0 and 15
+
+    let currentHours = 0; // Start from midnight
+    let currentMinutes = 0;
+
+    for (let j = 0; j < length; j++) {
+      const durationHours = Math.floor(Math.random() * 6); // Duration 0–5 hours
+      const durationMinutes = Math.floor(Math.random() * 60); // Duration 0–59 minutes
+
+      // Calculate the start time
+      const start = { hours: currentHours, minutes: currentMinutes };
+
+      // Calculate the end time
+      let endMinutes = currentMinutes + durationMinutes;
+      let endHours = currentHours + durationHours;
+
+      if (endMinutes >= 60) {
+        endMinutes -= 60;
+        endHours += 1;
+      }
+
+      if (endHours >= 24) break; // Stop if the end time goes beyond 24 hours
+
+      const end = { hours: endHours, minutes: endMinutes };
+
+      // Add the time period
+      periods.push({ start, end });
+
+      // Update current time for the next period
+      currentHours = endHours;
+      currentMinutes = endMinutes;
+    }
+
+    values.push(periods);
+    
+  }
+
+  const scheduleMap: Map<string, TimePeriod[]> = new Map();
+  days_keys.forEach((key, index) => {
+    scheduleMap.set(key.toISOString(), values[index]);
+  });
+  return scheduleMap
+}
+
+
+export const inspectorTimes: DaysWithRanges = {
+  daysMap : getRandomData()
 };
 
-export const clientTimes: TimeRange = {
-  "2024-12-03": ["9:00 AM", "12:00 PM", "3:00 PM", "5:00 PM"],
-  "2024-12-04": ["8:30 AM", "10:15 AM", "1:45 PM", "4:30 PM"],
-  // Add more dates and times
+export const clientTimes: DaysWithRanges = {
+  daysMap : getRandomData()
 };
+
+

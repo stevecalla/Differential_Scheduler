@@ -3,7 +3,7 @@
 // I built this class assuming everything will lie within a 24 hour clock. The code doesn't stop you from going over 24 hours and I don't know how that will translate to Javascript Date object. But, you will still get 15 minute time intervals and appropriate (although strange) over 24 hour times. 
 
 // Clock Time represent a 24 hour clock.
-interface ClockTime {
+export interface ClockTime {
   hours: number;
   minutes: number;  
 }
@@ -17,7 +17,7 @@ interface TimeSlot {
 
 // Time Period is two ClockTimes (24 hour clock). One representing the start and the other the finish.
 // Availability is an unused option on time period. It does nothing as of right now.
-interface TimePeriod{
+export interface TimePeriod{
   start : ClockTime
   end : ClockTime
   availability? : boolean

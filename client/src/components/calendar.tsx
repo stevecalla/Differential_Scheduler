@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import "./Calendar.css";
 import AvailableTimes from "./AvailableTimes";
-import {inspectorTimes, clientTimes} from "../data/timeData"
-export interface TimeRange {
-  start: string;
-  end: string;
-  date: string;
-}
-interface CalendarProps {
-  inspectorTimes: TimeRange;
-  clientTimes: TimeRange;
+//import {inspectorTimes, clientTimes} from "../data/timeData"
+import {TimePeriod} from "../../../server/src/utils/timeslots"
+export interface DaysWithRanges {
+  daysMap : Map<string, TimePeriod[]>
 }
 
+interface CalendarProps {
+  inspectorTimes: DaysWithRanges;
+  clientTimes: DaysWithRanges;
+}
 const Calendar: React.FC<CalendarProps> = ({inspectorTimes, clientTimes })  => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -27,10 +26,6 @@ const Calendar: React.FC<CalendarProps> = ({inspectorTimes, clientTimes })  => {
   const handleSelectDay = (day: number) => {
     const selected = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
     setSelectedDate(selected);
-  };
-
-  const handleTimeClick = (time: string) => {
-    alert(`You selected: ${time}`);
   };
 
   const renderCalendarDays = () => {
@@ -52,9 +47,16 @@ const Calendar: React.FC<CalendarProps> = ({inspectorTimes, clientTimes })  => {
     // Days of the current month
     for (let day = 1; day <= daysInMonth; day++) {
       const cellDate = new Date(year, month, day);
-      const formattedDate = cellDate.toISOString().split("T")[0];
       const isPastDay = cellDate < today && (!isSameMonth || day < today.getDate());
-      const hasAvailableTime = !!inspectorTimes.date;
+
+      let hasAvailableTime : boolean;
+      let valid = inspectorTimes.daysMap.get(cellDate.toISOString())
+      if(valid?.length && !isPastDay){
+        hasAvailableTime = valid.length > 0
+      }else{
+        hasAvailableTime = false
+      }
+      
       const isSelected = selectedDate?.toDateString() === cellDate.toDateString();
 
       calendarDays.push(
@@ -82,8 +84,8 @@ const Calendar: React.FC<CalendarProps> = ({inspectorTimes, clientTimes })  => {
     currentDate.getFullYear() === new Date().getFullYear() &&
     currentDate.getMonth() === new Date().getMonth();
 
-  const selectedDateFormatted = selectedDate?.toISOString().split("T")[0];
-  const selectedTimes = selectedDateFormatted ? timeData[selectedDateFormatted] : null;
+  //const selectedDateFormatted = selectedDate?.toISOString().split("T")[0];
+  //const selectedTimes = selectedDateFormatted ? timeData[selectedDateFormatted] : null;
 
   return (
     <div className="calendar-container">
@@ -100,10 +102,10 @@ const Calendar: React.FC<CalendarProps> = ({inspectorTimes, clientTimes })  => {
         </div>
       </div>
       <AvailableTimes
+          activeView={"Inspector"}
           inspectorTimes={inspectorTimes}
           clientTimes={clientTimes}
           selectedDate={selectedDate}
-          onTimeClick={(time) => console.log("Selected time:", time)}
         />
     </div>
     
