@@ -3,11 +3,14 @@
 // I built this class assuming everything will lie within a 24 hour clock. The code doesn't stop you from going over 24 hours and I don't know how that will translate to Javascript Date object. But, you will still get 15 minute time intervals and appropriate (although strange) over 24 hour times. 
 
 // Clock Time represent a 24 hour clock.
-interface ClockTime {
+export interface ClockTime {
   hours: number;
   minutes: number;  
 }
-
+export interface TimeRange{
+  start : TimePeriod
+  end : TimePeriod
+}
 // This interface holds all the information needed for a 15 minute Interval. 15 minute intervals is the timeSlot.
 interface TimeSlot {
   timeLeft: number;
@@ -17,7 +20,7 @@ interface TimeSlot {
 
 // Time Period is two ClockTimes (24 hour clock). One representing the start and the other the finish.
 // Availability is an unused option on time period. It does nothing as of right now.
-interface TimePeriod{
+export interface TimePeriod{
   start : ClockTime
   end : ClockTime
   availability? : boolean
@@ -232,6 +235,29 @@ export const convertJDateToClockTime = function(date: Date){
   }
   return clockTime
 }
+
+
+
+export const formatClockTime = function (clockTime: ClockTime): string {
+  let { hours, minutes } = clockTime;
+  const period = hours >= 12 ? "PM" : "AM";
+  
+  // Convert hours to 12-hour format
+  hours = hours % 12 || 12; // Convert 0 to 12 for midnight, or keep it in 12-hour format
+
+  // Format minutes to always have two digits
+  const minutesFormatted = minutes.toString().padStart(2, "0");
+
+  return `${hours}:${minutesFormatted} ${period}`;
+}
+
+export const durationTimePeriod = function (period : TimePeriod)  {
+  let { hours : h1, minutes : m1} = period.start;
+  let { hours : h2, minutes : m2} = period.end;
+
+  return Math.abs(h2*60+m2-(h1*60+m1));
+}
+
 
 
 
