@@ -7,7 +7,10 @@ export interface ClockTime {
   hours: number;
   minutes: number;  
 }
-
+export interface TimeRange{
+  start : TimePeriod
+  end : TimePeriod
+}
 // This interface holds all the information needed for a 15 minute Interval. 15 minute intervals is the timeSlot.
 interface TimeSlot {
   timeLeft: number;
@@ -232,6 +235,29 @@ export const convertJDateToClockTime = function(date: Date){
   }
   return clockTime
 }
+
+
+
+export const formatClockTime = function (clockTime: ClockTime): string {
+  let { hours, minutes } = clockTime;
+  const period = hours >= 12 ? "PM" : "AM";
+  
+  // Convert hours to 12-hour format
+  hours = hours % 12 || 12; // Convert 0 to 12 for midnight, or keep it in 12-hour format
+
+  // Format minutes to always have two digits
+  const minutesFormatted = minutes.toString().padStart(2, "0");
+
+  return `${hours}:${minutesFormatted} ${period}`;
+}
+
+export const durationTimePeriod = function (period : TimePeriod)  {
+  let { hours : h1, minutes : m1} = period.start;
+  let { hours : h2, minutes : m2} = period.end;
+
+  return Math.abs(h2*60+m2-(h1*60+m1));
+}
+
 
 
 

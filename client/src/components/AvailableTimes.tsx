@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {DaysWithRanges} from "./calendar";
-
+import {formatClockTime, TimePeriod, durationTimePeriod} from "../../../server/src/utils/timeslots";
 
 interface AvailableTimesProps {
   activeView: "Inspector" | "Client";
@@ -12,8 +12,9 @@ interface AvailableTimesProps {
 const AvailableTimes: React.FC<AvailableTimesProps> = ({
   inspectorTimes,
   clientTimes,
-  selectedDate,
+  selectedDate,  
 }) => {
+  const [selectedTime, setSelectedTime] = useState<TimePeriod | null>({} as TimePeriod);
   const [activeView, setActiveView] = useState<"Inspector" | "Client">(
     "Inspector"
   );
@@ -26,6 +27,17 @@ const AvailableTimes: React.FC<AvailableTimesProps> = ({
     );
   }
 
+
+  const handleTimeClick = (time : TimePeriod | null) => {
+    setSelectedTime(time);
+    console.log(`selectedTime: ${JSON.stringify(selectedTime)} time: ${JSON.stringify(time)}`)
+  };
+
+
+
+  const duration = selectedTime && selectedTime.start && selectedTime.end
+    ? durationTimePeriod(selectedTime)
+    : 0;
   // Determine the currently active times
   const times =
     activeView === "Inspector"
@@ -35,8 +47,15 @@ const AvailableTimes: React.FC<AvailableTimesProps> = ({
   // Determine the number of columns dynamically
   const columnCount = 5
     //times.length > 21 ? 4 : times.length > 14 ? 3 : times.length > 7 ? 2 : 1
-    // ! This print needs to be buttons
-    const print = JSON.stringify(times.daysMap.get(selectedDate.toISOString()))
+    const selDay = times.daysMap.get(selectedDate.toISOString())
+    const time : string[] = []
+    const periods : TimePeriod[] = []
+    selDay?.forEach((period) =>{
+        time.push(`${formatClockTime(period.start)} - ${formatClockTime(period.end)}`)
+        periods.push(period)
+      }
+    )
+    //const time : string[] = `${selDay.}`
 
   return (
     <div className="available-times">
@@ -59,7 +78,6 @@ const AvailableTimes: React.FC<AvailableTimesProps> = ({
       {/* Display Times */}
       <h3>
         {activeView} Times for {selectedDate.toLocaleDateString()}
-        {print}
       </h3>
       <div
         className={`available-times-grid ${
@@ -67,13 +85,39 @@ const AvailableTimes: React.FC<AvailableTimesProps> = ({
         }`}
         style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)` }}
       >
-        {/* {times.map((time, index) => (
-          <button key={index} onClick={() => onTimeClick(time)}>
-            {time.daysMap}
+        {time.map((periodString, index) =>
+          <button key={index} onClick={() => handleTimeClick(periods[index])}>
+            {periodString}
           </button>
-        ))} */}
-      </div>
+        )}      
     </div>
+    {!!selectedTime && !!selectedTime.start && !!selectedTime.end && (
+                <div className="duration-bar-container">
+                {/* Inspector Bar */}
+                <div
+                  className="duration-bar inspector-bar"
+                  style={{
+                    width: `${duration}%`,
+                  }}
+                >
+                  {formatClockTime(selectedTime.start)} to {formatClockTime(selectedTime.end)}
+                </div>
+                {/* Client Bar */}
+                <div
+                  className="duration-bar client-bar"
+                  style={{
+                    width: `${(duration / 3)}%`, // Client bar is 1/3 the length
+                  }}
+                >
+                  {formatClockTime(selectedTime.start)} to {formatClockTime(selectedTime.end)}
+                </div>
+          <p>
+            Duration: {formatClockTime(selectedTime.start)} to {formatClockTime(selectedTime.end)} ({duration} minutes)
+          </p>
+        </div>
+      )}
+    </div>
+    
   );
 };
 
