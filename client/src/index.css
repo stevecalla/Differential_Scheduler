@@ -107,6 +107,26 @@ button:focus-visible {
   flex-grow: 1; /* Allow the main content to take up remaining space */
 }
 
+.summary-container {
+  display: flex;
+  flex-direction: column; /* Keeps the h1 and paragraph above the details */
+}
+
+.details-container {
+  display: flex; /* Enables flexbox layout for the service types and response */
+}
+
+.service-types, .response {
+  display: flex;
+  flex-direction: column; /* Stacks the h4 and p elements vertically */
+  margin-right: 20px; /* Adds some space between the two columns */
+}
+
+.service-types h4, .response p {
+  margin: 0; /* Removes default margin for better alignment */
+}
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -119,4 +139,6 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
 
