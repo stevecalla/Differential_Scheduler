@@ -4,9 +4,9 @@ import { ClockTime, TimePeriod } from './timeslots';
 const eventArray: TimePeriod[] = [];
 
 for (let i = 0; i < json.items.length; i++) {
-let startTime = json.items[0].start.dateTime;
-let endTime = json.items[0].end.dateTime;
-let availability = json.items[0].transparency;
+let startTime = json.items[i].start.dateTime;
+let endTime = json.items[i].end.dateTime;
+let availability = json.items[i].transparency;
 
 let available = true;
 
@@ -35,5 +35,4 @@ export default eventArray;
 
 
 
-// console.log(startTimeConvert);
-// console.log(endTimeConvert);
+console.log(eventArray);
