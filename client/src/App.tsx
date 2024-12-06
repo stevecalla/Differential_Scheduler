@@ -1,17 +1,16 @@
 import { Outlet } from 'react-router-dom';
+import Nav from './components/Navbar.tsx';
 
-import Navbar from './components/Navbar';
 
-function App() {
-
+const App = () => {
   return (
     <div>
-      <Navbar />
-      <main className="container container-fluid mt-5">
-        <Outlet />
-      </main>
+      <Nav />
+      <div className="main-content">
+        <Outlet /> {/* This will render the child routes */}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
