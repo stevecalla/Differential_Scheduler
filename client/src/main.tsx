@@ -17,30 +17,30 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <ServiceSelection />
+        path: '/ServiceSelection',
+        element: <ServiceSelection />,
       }, 
       {
-        path: '/property',
-        element: <PropertyDetails />
+        path: '/PropertyDetails',
+        element: <PropertyDetails />,
       }, 
       {
-        path: '/appointment',
-        element: <AppointmentAvailability />
+        path: '/AppointmentAvailability',
+        element: <AppointmentAvailability />,
       }, 
       {
-        path: '/personal',
-        element: <PersonalInformation />
+        path: '/PersonalInformation',
+        element: <PersonalInformation />,
       }, 
       {
-        path: '/summary',
-        element: <Summary />
+        path: '/Summary',
+        element: <Summary />,
       }, 
-    ]
-  }
-])
+    ],
+  },
+]);
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
-}
+};
