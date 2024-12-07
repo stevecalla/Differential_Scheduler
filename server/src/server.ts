@@ -1,20 +1,17 @@
-const forceDatabaseRefresh = false;  // Flag to control whether to force a database refresh on server start
-
 import express from 'express';
-import sequelize from './config/connection.js'; // Import the initialized Sequelize instance  // Import the routes for handling different endpoints
+import routes from './routes/index.js';
+import dotenv from 'dotenv';
 
-const app = express();  // Create an Express application
-const PORT = process.env.PORT || 3001;  // Define the port for the server to listen on
+dotenv.config();
 
-// Serves static files from the client's dist folder, typically for a built React application
-app.use(express.static('../client/dist'));
+const app = express();
 
-app.use(express.json());  // Middleware to parse JSON request bodies
-  // Use the imported routes for handling API endpoints
+// Use the calendarRouter for routes starting with '/calendar'
+app.use(routes);
 
-// Sync the Sequelize models with the database
-sequelize.sync({ force: forceDatabaseRefresh }).then(() => {
-  app.listen(PORT, () => {  // Start the server and listen on the defined port
-    console.log(`Server is listening on port ${PORT}`);  // Log a message when the server starts
-  });
+// Your server's listening port
+const port = process.env.SERVER_PORT;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
+
