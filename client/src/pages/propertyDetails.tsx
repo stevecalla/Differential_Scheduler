@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom'; 
 
 interface FormData {
   address: string;
@@ -11,6 +12,16 @@ interface FormData {
 }
 
 const PropertyDetails: React.FC = () => {
+  const navigate = useNavigate(); // Initialize navigate for navigation
+
+  const handlePrevious = () => {
+    navigate('/serviceSelection'); 
+  };
+
+  const handleNext = () => {
+    navigate('/appointmentAvailability'); 
+  };
+
   const [selectedPropertyType, setSelectedPropertyType] = useState<string>("");
 
   const [formData, setFormData] = useState<FormData>({
@@ -51,6 +62,7 @@ const PropertyDetails: React.FC = () => {
   };
 
   return (
+    <>
     <Container>
       <Row className="my-4">
         <Col> <h4>Select Property Type</h4>
@@ -142,6 +154,12 @@ const PropertyDetails: React.FC = () => {
           </Col>
         </Row>
       </Container>
+
+      <div className="button-container">
+        <button onClick={handlePrevious}>Previous</button>
+        <button onClick={handleNext}>Next</button>
+      </div>
+    </>
   );
 };
 
