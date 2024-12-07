@@ -15,11 +15,11 @@ const PropertyDetails: React.FC = () => {
   const navigate = useNavigate(); // Initialize navigate for navigation
 
   const handlePrevious = () => {
-    navigate('/previous-page'); // Replace with the actual path of the previous page
+    navigate('/serviceSelection'); 
   };
 
   const handleNext = () => {
-    navigate('/next-page'); // Replace with the actual path of the next page
+    navigate('/appointmentAvailability'); 
   };
 
   const [selectedPropertyType, setSelectedPropertyType] = useState<string>("");

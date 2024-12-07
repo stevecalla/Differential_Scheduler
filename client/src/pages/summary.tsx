@@ -4,11 +4,11 @@ const summary = () => {
   const navigate = useNavigate(); // Initialize navigate for navigation
 
     const handlePrevious = () => {
-      navigate('/previous-page'); // Replace with the actual path of the previous page
+      navigate('/personalInformation'); 
     };
 
-    const handleNext = () => {
-      navigate('/next-page'); // Replace with the actual path of the next page
+    const handleSubmit = () => {
+      navigate('/'); 
     };
 
   return (
@@ -37,7 +37,7 @@ const summary = () => {
 
       <div className="button-container">
           <button onClick={handlePrevious}>Previous</button>
-          <button onClick={handleNext}>Submit</button>
+          <button onClick={handleSubmit}>Submit</button>
       </div>
     </>
   );

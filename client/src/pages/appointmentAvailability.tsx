@@ -10,11 +10,11 @@ const AppointmentAvailability = () => {
     const navigate = useNavigate(); // Initialize navigate for navigation
 
     const handlePrevious = () => {
-      navigate('/previous-page'); // Replace with the actual path of the previous page
+      navigate('/propertyDetails'); 
     };
 
     const handleNext = () => {
-      navigate('/next-page'); // Replace with the actual path of the next page
+      navigate('/personalInformation'); 
     };
 
     return (

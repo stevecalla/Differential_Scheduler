@@ -75,6 +75,22 @@ div.button-container {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
+div.first-page-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  background-color: #fff; 
+  padding: 10px; 
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
 button {
   flex: 0; /* Allow inputs to grow and take equal space */
   margin: 2 60px; /* Add some space between inputs */
