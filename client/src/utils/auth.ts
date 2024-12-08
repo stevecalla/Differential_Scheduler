@@ -1,19 +1,19 @@
 
-class AuthService {
-  
-  // Check if the user is logged in by retrieving the token from localStorage
-  loggedIn() {
-    const token = this.getToken();
-    return token;
-  }
-
-  // Retrieve the JWT token from localStorage
+// Retrieve the JWT token from localStorage
 
 // Importing specific types and functions from the 'jwt-decode' library.
 // JwtPayload: A type definition representing the structure of a JSON Web Token payload.
 // jwtDecode: A function used to decode a JSON Web Token (JWT) and extract its payload.
 import { type JwtPayload, jwtDecode } from 'jwt-decode';
 import type { UserData } from '../interfaces/UserData';
+
+// class AuthService {
+  
+//   // Check if the user is logged in by retrieving the token from localStorage
+//   loggedIn() {
+//     const token = this.getToken();
+//     return token;
+//   };
 
 class AuthService {
   getProfile() {
