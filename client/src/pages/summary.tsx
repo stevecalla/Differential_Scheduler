@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'; 
+import { Container, Row, Col, Card, Table } from "react-bootstrap";
 
 const summary = () => {
   const navigate = useNavigate(); // Initialize navigate for navigation
@@ -10,30 +11,56 @@ const summary = () => {
     const handleSubmit = () => {
       navigate('/'); 
     };
+    const details = [
+      { label: "Service Type", value: "Walk & Talk" },
+      { label: "Additional Service", value: "Blue Tape" },
+      { label: "Dwelling Type", value: "Condo" },
+      { label: "Address", value: "101 Project2 Road, Washington DC, 10000" },
+      { label: "Square Footage", value: "1000 sqft" },
+    ];
 
+    const totalFee = 'placeholder'
+    
+    const priceDetails = 'placeholder'
   return (
     <>
-      <section className="summary-container">
+      <Container className="summary-container">
+        <Col>
         <h1>Almost Done! 🚀</h1>
         <p>Confirm your deal details information and submit to create it.</p>
         <br />
-        <div className="details-container">
-          <div className="service-types">
-            <h4>Service Type</h4>
-            <h4>Additional Service</h4>
-            <h4>Dwelling Type</h4>
-            <h4>Address</h4>
-            <h4>Square Footage</h4>
-          </div>
-          <div className="response">
-            <p>Walk & Talk</p>
-            <p>Blue Tape</p>
-            <p>Condo</p>
-            <p>101 Project2 Road, Washington DC, 10000</p>
-            <p>1000 sqft</p>
-          </div>
-        </div>
-      </section>
+        <Table responsive bordered hover className="mt-4">
+        <thead className="bg-light">
+          <tr>
+            <th>Detail</th>
+            
+            <th>Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          {details.map((detail, index) => (
+            <tr key={index}>
+              <td>{detail.label}</td>
+              <p> : </p>
+              <td>{detail.value}</td>
+            </tr>))}
+        </tbody>
+      </Table>
+       <Col md={4}>
+          <Card.Body>
+              <h1>Your total fee is:</h1>
+              <h2 className="text-primary">${totalFee}</h2>
+              <hr />
+              <h5>Price Details</h5>
+              <Table borderless size="sm">
+                <tbody>
+                <td className="text-end">${priceDetails}</td>
+                </tbody>
+              </Table>
+            </Card.Body>
+      </Col>
+        </Col>
+      </Container>
 
       <div className="button-container">
           <button onClick={handlePrevious}>Previous</button>
