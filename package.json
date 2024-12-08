@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "gapi-script": "^1.2.0",
-    "googleapis": "^144.0.0"
+    "googleapis": "^144.0.0",
+    "nvm": "^0.0.4"
   }
 }
