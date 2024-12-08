@@ -1,6 +1,6 @@
+
 import { sequelize } from '../config/connection.js';
-
-
+import { LoginFactory } from './login.js';
 import { UserFactory } from './user.js';
 import { AppointmentBlockFactory } from './AppointmentBlocks.js';
 import { ServiceFactory } from './Services.js';
@@ -9,6 +9,7 @@ import { AvailabilityOptionFactory } from './AvailabilityOptions.js'
 import { DwellingAdjustmentFactory } from './DwellingAdjustments.js';
 
 
+const Login = LoginFactory(sequelize);
 const User = UserFactory(sequelize);
 const AppointmentBlock = AppointmentBlockFactory(sequelize);
 const Service = ServiceFactory(sequelize);
@@ -65,4 +66,4 @@ AppointmentBlock.belongsToMany(AdditionalService, {
   through: 'AdditionalServiceAppointmentBlock',
 });
 
-export { AdditionalService, AvailabilityOption, DwellingAdjustment, Service, AppointmentBlock, User};
+export { AdditionalService, AvailabilityOption, DwellingAdjustment, Service, AppointmentBlock, User, Login };
