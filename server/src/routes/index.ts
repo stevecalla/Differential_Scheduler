@@ -11,7 +11,3 @@ router.use('/auth', authRoutes);
 router.use('/api', authenticateToken, apiRoutes);
 router.use('/', htmlRoutes);
 
-router.use('/auth', authRoutes);
-router.use('/api', authenticateToken, apiRoutes);
-
-export default router;
