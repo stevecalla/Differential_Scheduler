@@ -1,6 +1,7 @@
-import { sequelize } from '../config/connection.js';
-import { UserFactory } from './user.js';
 
-const User = UserFactory(sequelize);
+import {sequelize} from '../config/connection.js'
+import { LoginFactory } from './login.js';
 
-export { User };
+const Login = LoginFactory(sequelize);
+
+export { Login };
