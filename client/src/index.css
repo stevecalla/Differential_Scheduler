@@ -61,20 +61,50 @@ form {
   border: 1px solid #ccc;  
 }
 
+div.button-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px; 
+  display: flex;
+  justify-content: space-between; /* Space out the buttons */
+  align-items: center; 
+  background-color: #fff; 
+  padding: 10px; 
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+div.first-page-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  background-color: #fff; 
+  padding: 10px; 
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  flex: 0; /* Allow inputs to grow and take equal space */
+  margin: 2 60px; /* Add some space between inputs */
+  background-color: #f8f9fa;
+  color: grey;
+  width: 115px; 
+  border-radius: 10px; 
+  padding: 10px; 
+  border: 1px solid #ccc;  
 }
 
 button:hover {
-  border-color: #646cff;
+  background-color: #646cff;
+  color: whitesmoke;
 }
 
 button:focus,
@@ -83,17 +113,17 @@ button:focus-visible {
 }
 
 .sidebar {
-  width: 250px; /* Set the width of the sidebar */
+  width: 250px;
   height: 100vh; /* Full height */
-  background-color: #f8f9fa; /* Background color */
-  position: fixed; /* Fixed sidebar */
-  padding-top: 20px; /* Padding at the top */
+  background-color: #f8f9fa; 
+  position: fixed; 
+  padding-top: 20px; 
 }
 
 .sidebar .nav-link {
-  display: block; /* Make links block elements */
-  padding: 10px 15px; /* Padding for links */
-  color: #333; /* Link color */
+  display: block;
+  padding: 10px 15px; 
+  color: grey;
 }
 
 .sidebar .nav-link.active {
@@ -103,9 +133,29 @@ button:focus-visible {
 
 .main-content {
   margin-left: 250px; /* Adjust this to match the width of your sidebar */
-  padding: 20px; /* Optional padding for the main content */
+  padding: 20px;
   flex-grow: 1; /* Allow the main content to take up remaining space */
 }
+
+.summary-container {
+  display: flex;
+  flex-direction: column; /* Keeps the h1 and paragraph above the details */
+}
+
+.details-container {
+  display: flex; /* Enables flexbox layout for the service types and response */
+}
+
+.service-types, .response {
+  display: flex;
+  flex-direction: column; /* Stacks the h4 and p elements vertically */
+  margin-right: 20px; /* Adds some space between the two columns */
+}
+
+.service-types h4, .response p {
+  margin: 0; /* Removes default margin for better alignment */
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -119,4 +169,6 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
 
