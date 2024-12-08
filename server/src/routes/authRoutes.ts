@@ -1,10 +1,8 @@
 // /src/routes/authRouter.ts
-
-
 import { Router, type Request, type Response } from 'express';
-
+import { User } from '../models/user.js';
 import { getAuthUrl, getTokens } from '../config/connection.js';
-import { Login } from '../models/login.js';  // Import the User model
+// import { Login } from '../models/login.js';  // Import the User model
 import jwt from 'jsonwebtoken';  // Import the JSON Web Token library
 import bcrypt from 'bcrypt';  // Import the bcrypt library for password hashing
 const router = Router();
@@ -32,10 +30,6 @@ router.get('/callback', async (req, res) => {
   }
 });
 
-
-import { User } from '../models/user.js';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
 
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
