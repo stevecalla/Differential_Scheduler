@@ -19,9 +19,9 @@ const summary = () => {
       { label: "Square Footage", value: "1000 sqft" },
     ];
 
-    const totalFee = 'placeholder'
+    const totalFee = '500'
     
-    const priceDetails = 'placeholder'
+    const priceDetails = '500'
   return (
     <>
       <Container className="summary-container">
