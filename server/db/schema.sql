@@ -1,3 +1,4 @@
+
 -- DROP DATABASE
 DROP DATABASE IF EXISTS login_db;
 

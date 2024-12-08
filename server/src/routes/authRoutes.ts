@@ -1,6 +1,8 @@
 // /src/routes/authRouter.ts
 
-import { Router, Request, Response } from 'express';
+
+import { Router, type Request, type Response } from 'express';
+
 import { getAuthUrl, getTokens } from '../config/connection.js';
 import { Login } from '../models/login.js';  // Import the User model
 import jwt from 'jsonwebtoken';  // Import the JSON Web Token library
@@ -31,28 +33,30 @@ router.get('/callback', async (req, res) => {
 });
 
 
+import { User } from '../models/user.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
-
-// Login function to authenticate a user
 export const login = async (req: Request, res: Response) => {
-  const { username, password } = req.body;  // Extract username and password from request body
+  const { username, password } = req.body;
 
-  // Find the user in the database by username
-  const user = await Login.findOne({
+  const user = await User.findOne({
     where: { username },
   });
 
-  // If user is not found, send an authentication failed response
   if (!user) {
     return res.status(401).json({ message: 'Authentication failed' });
   }
 
+
   // Compare the provided password with the stored hashed password
   const passwordIsValid = await bcrypt.compare(password, user.password);
   // If password is invalid, send an authentication failed response
+
   if (!passwordIsValid) {
     return res.status(401).json({ message: 'Authentication failed' });
   }
+
 
   // Get the secret key from environment variables
   const secretKey = process.env.JWT_SECRET_KEY || '';
@@ -66,3 +70,4 @@ export const login = async (req: Request, res: Response) => {
 router.post('/login', login);  // Define the login route
 
 export default router;
+

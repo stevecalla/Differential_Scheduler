@@ -1,5 +1,7 @@
+
 import { seedLogin  } from './login-seeds.js';
 import {sequelize} from '../config/connection.js';
+
 
 const seedAll = async (): Promise<void> => {
   try {
