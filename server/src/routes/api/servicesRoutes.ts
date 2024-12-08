@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { Service } from '../../models/index.js';
+import { Service } from '../../models/Services.js';
 import { AppointmentBlock } from '../../models/AppointmentBlocks.js';
 
 export const getAllServices = async (_req: Request, res: Response) => {

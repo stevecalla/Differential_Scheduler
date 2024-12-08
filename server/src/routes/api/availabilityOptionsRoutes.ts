@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { AvailabilityOption } from '../../models/index';
-import { AppointmentBlock } from '../../models/AppointmentBlocks';
+import { AvailabilityOption } from '../../models/AvailabilityOptions.js';
+import { AppointmentBlock } from '../../models/AppointmentBlocks.js';
 
 // GET all AvailabilityOptions
 export const getAllAvailabilityOptions = async (_req: Request, res: Response) => {

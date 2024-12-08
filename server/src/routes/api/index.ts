@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { userRouter } from './user-routes.js';
-import { AdditionalServicesRouter } from './additionalServicesRoutes';
-import { AppointmentBlocksRouter } from './appointmentBlocksRoutes';
-import { AvailabilityOptionsRouter } from './availabilityOptionsRoutes';
-import { DwellingAdjustmentsRouter } from './dwellingAdjustmentsRoutes';
-import { ServicesRouter } from './servicesRoutes';
+import { AdditionalServicesRouter } from './additionalServicesRoutes.js';
+import { AppointmentBlocksRouter } from './appointmentBlocksRoutes.js';
+import { AvailabilityOptionsRouter } from './availabilityOptionsRoutes.js';
+import { DwellingAdjustmentsRouter } from './dwellingAdjustmentsRoutes.js';
+import { ServicesRouter } from './servicesRoutes.js';
 import calendarRoutes from './calendarRoutes.js';
 
 const router = Router();

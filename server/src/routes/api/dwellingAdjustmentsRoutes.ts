@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { DwellingAdjustment } from '../../models/index.js';
+import { DwellingAdjustment } from '../../models/DwellingAdjustments.js';
 import { AppointmentBlock } from '../../models/index.js';
 
 // GET a single DwellingAdjustment

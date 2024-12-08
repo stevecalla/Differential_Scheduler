@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { AdditionalService } from '../../models/index.js';
+import { AdditionalService } from '../../models/AdditionalServices.js';
 import { AppointmentBlock } from '../../models/AppointmentBlocks.js';
 
 // GET all AdditionalServices

@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { AppointmentBlock } from '../../models/AppointmentBlocks';
+import { AppointmentBlock } from '../../models/AppointmentBlocks.js';
 
 export const getAllAppointmentBlocks = async (_req: Request, res: Response) => {
   try {
