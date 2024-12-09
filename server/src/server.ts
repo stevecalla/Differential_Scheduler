@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.SERVER_PORT || 3001;
+const PORT = process.env.PORT || 3001;
 // const forceDatabaseRefresh = false;
 
 // Use the calendarRouter for routes starting with '/calendar'
