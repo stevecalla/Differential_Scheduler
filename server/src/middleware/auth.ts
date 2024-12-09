@@ -1,13 +1,10 @@
-
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 // Define the interface for the JWT payload
-
 interface JwtPayload {
   username: string;
 }
-
 
 // Middleware function to authenticate JWT token
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
@@ -36,4 +33,3 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     res.sendStatus(401); // Send unauthorized status if no authorization header is present
   }
 };
-
