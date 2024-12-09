@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button, Form, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; 
 
-
-
 const ServiceSelection: React.FC = () => {
   const [userType, setUserType] = useState<string | null>(null);
   const [serviceType, setServiceType] = useState<string | null>(null);
@@ -90,6 +88,7 @@ const renderProgressBarText = () => {
 };
 
 return (
+  <>
   <Container className="mt-4">
       {/* Progress Bar */}
       <ProgressBar now={progress} label={renderProgressBarText()} />
@@ -188,6 +187,12 @@ return (
         </div>
       )}
     </Container>
+
+  <div className="button-container">
+    <button onClick={handlePrevious}>Previous</button>
+    <button onClick={handleNext}>Next</button>
+  </div>
+</>
   );
   // return (
   //   <>

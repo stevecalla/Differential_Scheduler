@@ -15,6 +15,14 @@ const Nav = () => {
         Service Selection
       </Link>
       <Link
+        to='/login'
+        className={
+          currentPage === '/login' ? 'nav-link active' : 'nav-link'
+        }
+      >
+        Login
+      </Link>
+      <Link
         to='/propertyDetails'
         className={
           currentPage === '/propertyDetails' ? 'nav-link active' : 'nav-link'

@@ -19,6 +19,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <ServiceSelection />,
+      }, 
+      {
         path: '/ServiceSelection',
         element: <ServiceSelection />,
       }, 
