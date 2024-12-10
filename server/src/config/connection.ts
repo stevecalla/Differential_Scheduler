@@ -1,7 +1,7 @@
 import { OAuth2Client } from 'google-auth-library';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '../../.env' }); // Load environment variables from a .env file into process.env
+dotenv.config({ path: '.env' }); // Load environment variables from a .env file into process.env
 
 
 
