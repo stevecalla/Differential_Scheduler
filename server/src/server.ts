@@ -18,7 +18,9 @@ app.use(express.static('../client/dist'));
 
 // Your server's listening port
 
-app.listen(PORT, '0.0.0.0', () => { console.log(`Server running on port ${PORT}`); });
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // sequelize.sync({ force: forceDatabaseRefresh }).then(() => {
 //   app.listen(PORT, () => {
