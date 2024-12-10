@@ -1,7 +1,7 @@
 
 import { sequelize } from '../config/connection.js';
-import { LoginFactory } from './login.js';
-import { UserFactory } from './user.js';
+import { LoginFactory } from './Logins.js';
+import { UserFactory } from './Users.js';
 import { AppointmentBlockFactory } from './AppointmentBlocks.js';
 import { ServiceFactory } from './Services.js';
 import { AdditionalServiceFactory } from './AdditionalServices.js'

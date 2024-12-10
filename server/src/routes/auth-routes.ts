@@ -1,10 +1,11 @@
 import { Router, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';  // Import the JSON Web Token library
 import bcrypt from 'bcrypt';  // Import the bcrypt library for password hashing
-import { User } from '../models/user.js';  // Import the User model
+import { User } from '../models/Users.js';  // Import the User model
 
 // Login function to authenticate a user
 export const login = async (req: Request, res: Response) => {
+  console.log('ding');
   const { username, password } = req.body;  // Extract username and password from request body
 
   // Find the user in the database by username

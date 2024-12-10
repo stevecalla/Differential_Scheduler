@@ -19,7 +19,7 @@ const sequelize = process.env.DB_URL
   ? new Sequelize(process.env.DB_URL)
   : new Sequelize(process.env.DB_NAME || '', process.env.DB_USER || '', process.env.DB_PASSWORD, {
       host: 'localhost',       // Database host
-      port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3001,
+      // port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3001,
       dialect: 'postgres',     // Database dialect (PostgreSQL)
       dialectOptions: {
         decimalNumbers: true,  // Ensure decimal numbers are handled correctly

@@ -1,6 +1,6 @@
-
-import { seedLogin  } from './login-seeds.js';
-import {sequelize} from '../config/connection.js';
+import { seedUsers } from './user-seeds.js';
+import { seedLogin } from './login-seeds.js';
+import { sequelize } from '../config/connection.js';
 
 
 const seedAll = async (): Promise<void> => {
@@ -10,6 +10,9 @@ const seedAll = async (): Promise<void> => {
     
     await seedLogin ();
     console.log('\n----- LOGIN SEEDED -----\n');
+        
+    await seedUsers ();
+    console.log('\n----- USERS SEEDED -----\n');
     
     process.exit(0);
   } catch (error) {

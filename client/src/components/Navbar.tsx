@@ -3,7 +3,6 @@ import '../index.css';
 
 const Nav = () => {
   const currentPage = useLocation().pathname;
-
   return (
     <div className="sidebar">
         <Link
