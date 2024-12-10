@@ -12,8 +12,8 @@ export default defineConfig({
         warn(warning);
       },
         output: {
-          chunkFileNames: 'js/[name]-[hash].js',
-          entryFileNames: 'js/[name]-[hash].js',
+          chunkFileNames: 'JavaScript/[name]-[hash].js',
+          entryFileNames: 'JavaScript/[name]-[hash].js',
       
           assetFileNames: ({name}) => {
             if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
@@ -21,7 +21,7 @@ export default defineConfig({
             }
       
             if (/\.css$/.test(name ?? '')) {
-              return 'css/[name]-[hash][extname]';
+              return 'CSS/[name]-[hash][extname]';
             }
       
             return '[name]-[hash].[extname]';
