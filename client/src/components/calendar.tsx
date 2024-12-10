@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Calendar.css";
+import "./calendar.css";
 import AvailableTimes from "./AvailableTimes";
 //import {inspectorTimes, clientTimes} from "../data/timeData"
 import {TimePeriod} from "../../../server/src/utils/timeslots"
