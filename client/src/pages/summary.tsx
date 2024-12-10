@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'; 
-import { Container, Row, Col, Card, Table } from "react-bootstrap";
+import { Container, Col, Card, Table } from "react-bootstrap";
 
-const summary = () => {
+const Summary = () => {
   const navigate = useNavigate(); // Initialize navigate for navigation
 
     const handlePrevious = () => {
@@ -70,4 +70,4 @@ const summary = () => {
   );
 };
 
-export default summary;
+export default Summary;
