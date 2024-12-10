@@ -21,7 +21,7 @@ export default defineConfig({
             }
       
             if (/\.css$/.test(name ?? '')) {
-              return 'css/[name]-[hash].[extname]';
+              return 'css/[name]-[hash][extname]';
             }
       
             return '[name]-[hash].[extname]';
