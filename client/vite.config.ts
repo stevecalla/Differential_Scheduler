@@ -11,6 +11,12 @@ export default defineConfig({
         }
         warn(warning);
       },
+      output: {
+        assetFileNames: (assetInfo) => {
+          let extType = assetInfo.name!.split('.').at(1);
+          return `assets/[name]-[hash][${extType}]`;
+        },
+      },
     },
   },
   server: {
